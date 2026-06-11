@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="description" content="FSExpo 2026 Trip — Ron Kratz & Marco Salazar">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>FSExpo 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #c8102e;
+  --dark: #2a2a2a;
+  --mid: #3a3a3a;
+  --light: #5a5a5a;
+  --border: #e2e2e2;
+  --bg: #f5f5f3;
+  --white: #ffffff;
+  --text: #1a1a1a;
+  --muted: #666666;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --nav-h: 64px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding-bottom: var(--nav-h);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  background: var(--dark);
+  border-bottom: 3px solid var(--red);
+  padding: 13px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+.topbar-left { display: flex; align-items: center; gap: 9px; }
+.topbar-title { font-size: 15px; font-weight: 600; color: #fff; }
+.topbar-conf { font-family: 'DM Mono', monospace; font-size: 10px; color: #aaa; background: rgba(255,255,255,0.08); padding: 3px 8px; border-radius: 5px; }
+
+/* ── BOTTOM NAV ── */
+.bottom-nav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  background: var(--dark);
+  border-top: 2px solid var(--red);
+  display: flex;
+  z-index: 200;
+}
+.nav-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  background: none;
+  border: none;
+  color: #888;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.15s;
+  padding: 8px 4px;
+}
+.nav-btn.active { color: var(--red); }
+.nav-btn svg { width: 20px; height: 20px; }
+
+/* ── PAGES ── */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── CONTENT WRAPPER ── */
+.content { padding: 16px; max-width: 680px; margin: 0 auto; }
+
+/* ══════════════════════════════
+   HOME PAGE
+══════════════════════════════ */
+.home-hero {
+  background: var(--dark);
+  padding: 28px 20px 24px;
+  border-bottom: 3px solid var(--red);
+  text-align: center;
+}
+.home-logo {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--red);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.home-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+.home-subtitle { font-size: 13px; color: #aaa; margin-bottom: 20px; }
+
+.home-route {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.home-iata { font-size: 42px; font-weight: 600; color: #fff; line-height: 1; }
+.home-mid { display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1; max-width: 120px; }
+.home-plane { font-size: 24px; }
+.home-line { width: 100%; height: 1px; background: #555; }
+.home-city { font-size: 10px; color: #777; margin-top: 2px; }
+
+.pax-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0 16px 20px; }
+.pax-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  text-align: center;
+}
+.pax-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--red);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 600; color: #fff;
+  margin: 0 auto 8px;
+}
+.pax-name { font-size: 13px; font-weight: 600; color: var(--text); }
+.pax-role { font-size: 10px; color: var(--muted); margin-top: 2px; }
+
+.home-dates {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 16px;
+  background: rgba(200,16,46,0.1);
+  border-top: 1px solid rgba(200,16,46,0.2);
+}
+.home-date-item { text-align: center; }
+.home-date-label { font-size: 9px; color: #888; text-transform: uppercase; letter-spacing: 0.06em; }
+.home-date-val { font-size: 12px; font-weight: 500; color: #fff; margin-top: 2px; }
+.home-date-sep { color: #555; align-self: center; font-size: 18px; }
+
+.home-cards { padding: 16px; display: grid; gap: 10px; }
+.home-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+.home-card:active { transform: scale(0.98); }
+.home-card-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  background: var(--dark);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.home-card-icon.red { background: var(--red); }
+.home-card-body { flex: 1; }
+.home-card-title { font-size: 14px; font-weight: 600; color: var(--text); }
+.home-card-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.home-card-arrow { color: #ccc; font-size: 18px; }
+
+.home-footer {
+  margin: 8px 16px 16px;
+  background: var(--dark);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  border-top: 3px solid var(--red);
+  text-align: center;
+}
+.home-footer-title { font-size: 11px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+.home-footer-text { font-size: 10px; color: #777; line-height: 1.6; }
+
+/* ══════════════════════════════
+   ITINERARY PAGE
+══════════════════════════════ */
+.day-tabs {
+  display: flex;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  position: sticky;
+  top: 54px;
+  z-index: 99;
+}
+.day-tabs::-webkit-scrollbar { display: none; }
+.day-tab {
+  flex: 1;
+  min-width: 72px;
+  padding: 11px 6px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: all 0.15s;
+  background: none;
+  border-top: none; border-left: none; border-right: none;
+  font-family: 'DM Sans', sans-serif;
+}
+.day-tab.active { color: var(--red); border-bottom-color: var(--red); }
+.day-tab .tab-day { font-size: 9px; opacity: 0.7; display: block; margin-top: 1px; }
+
+.day-section { display: none; }
+.day-section.active { display: block; }
+
+.day-header {
+  background: var(--mid);
+  border-radius: var(--radius) var(--radius) 0 0;
+  padding: 11px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.day-header-name { font-size: 12px; font-weight: 600; color: #fff; }
+.day-header-hours { font-size: 10px; color: #aaa; }
+
+.seg-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: none;
+  padding: 13px 15px;
+}
+.seg-card:last-child { border-radius: 0 0 var(--radius) var(--radius); margin-bottom: 18px; }
+.seg-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 9px; gap: 6px; }
+.seg-fn { font-size: 10px; color: var(--muted); flex: 1; }
+
+.badge {
+  font-size: 9px; font-weight: 600;
+  padding: 3px 9px; border-radius: 99px;
+  white-space: nowrap; letter-spacing: 0.02em;
+  min-width: 88px; text-align: center;
+  flex-shrink: 0;
+}
+.b-flight { background: var(--dark); color: #fff; }
+.b-must { background: var(--red); color: #fff; }
+.b-good { background: var(--light); color: #fff; }
+.b-hotel { background: var(--dark); color: #fff; }
+.b-dining { background: var(--red); color: #fff; }
+.b-social { background: var(--light); color: #fff; }
+.b-car { background: var(--dark); color: #fff; }
+.b-spot { background: var(--light); color: #fff; }
+.b-walk { background: var(--light); color: #fff; }
+
+.leg { display: flex; align-items: center; gap: 6px; }
+.leg-end { flex: 2; min-width: 0; }
+.leg-end.right { text-align: right; }
+.leg-time { font-size: 22px; font-weight: 600; color: var(--text); line-height: 1; font-family: 'DM Mono', monospace; }
+.leg-iata { font-size: 9px; font-weight: 600; color: var(--mid); margin-top: 3px; letter-spacing: 0.03em; }
+.leg-name { font-size: 10px; color: var(--muted); margin-top: 2px; line-height: 1.3; }
+.conn { flex: 1.5; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 0 3px; }
+.conn-row { width: 100%; display: flex; align-items: center; gap: 2px; }
+.conn-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+.conn-line { flex: 1; height: 1px; background: var(--border); }
+.conn-icon { font-size: 13px; color: var(--red); }
+.conn-icon-gray { font-size: 13px; color: #bbb; }
+.conn-dur { font-size: 9px; color: var(--muted); text-align: center; line-height: 1.3; }
+.conn-type { font-size: 9px; color: #bbb; text-align: center; }
+.seg-note { font-size: 10px; color: var(--muted); margin-top: 9px; padding-top: 9px; border-top: 1px solid #f0f0f0; line-height: 1.6; }
+
+/* ══════════════════════════════
+   RESERVATIONS PAGE
+══════════════════════════════ */
+.res-section { margin-bottom: 6px; }
+.res-section-header {
+  background: var(--mid);
+  border-radius: var(--radius) var(--radius) 0 0;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.res-section-icon { font-size: 16px; }
+.res-section-title { font-size: 12px; font-weight: 600; color: #fff; }
+
+.res-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: none;
+  padding: 14px 15px;
+}
+.res-card:last-child { border-radius: 0 0 var(--radius) var(--radius); margin-bottom: 18px; }
+
+.res-name { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+.res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.res-item { }
+.res-label { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.res-value { font-size: 12px; font-weight: 500; color: var(--text); margin-top: 2px; line-height: 1.3; }
+.res-conf {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--red);
+  background: #fef0f2;
+  border: 1px solid #f5c6ce;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.res-conf-label { font-size: 9px; color: var(--muted); font-family: 'DM Sans', sans-serif; white-space: nowrap; }
+.res-conf-val { font-size: 12px; color: var(--red); word-break: break-all; }
+.res-divider { height: 1px; background: #f0f0f0; margin: 10px 0; }
+.res-pax-row { display: flex; gap: 8px; }
+.res-pax-pill {
+  background: var(--dark);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 99px;
+  display: flex; align-items: center; gap: 5px;
+}
+.res-pax-pill .pax-init {
+  width: 18px; height: 18px;
+  background: var(--red);
+  border-radius: 50%;
+  font-size: 9px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+}
+.res-phone { font-size: 11px; color: var(--muted); margin-top: 8px; }
+.res-phone a { color: var(--red); text-decoration: none; }
+
+/* ══════════════════════════════
+   DINING PAGE
+══════════════════════════════ */
+.dining-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+.dining-header {
+  background: var(--dark);
+  padding: 12px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dining-name { font-size: 14px; font-weight: 600; color: #fff; }
+.dining-day { font-size: 10px; color: #aaa; }
+.dining-body { padding: 14px 15px; }
+.dining-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+.dining-label { font-size: 10px; color: var(--muted); }
+.dining-val { font-size: 11px; font-weight: 500; color: var(--text); text-align: right; max-width: 60%; line-height: 1.3; }
+.dining-conf {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: var(--red);
+  background: #fef0f2;
+  border: 1px solid #f5c6ce;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dining-note {
+  font-size: 10px;
+  color: var(--muted);
+  padding-top: 10px;
+  border-top: 1px solid #f0f0f0;
+  line-height: 1.6;
+}
+.dining-phone { font-size: 11px; color: var(--muted); }
+.dining-phone a { color: var(--red); text-decoration: none; }
+
+/* conf pill inline */
+.cpill {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  background: #f0f0ee;
+  color: var(--mid);
+  padding: 1px 5px;
+  border-radius: 4px;
+  margin: 0 2px;
+}
+
+@media (max-width: 380px) {
+  .home-iata { font-size: 34px; }
+  .pax-cards { grid-template-columns: 1fr 1fr; }
+  .leg-time { font-size: 19px; }
+  .res-grid { grid-template-columns: 1fr; }
+}
+
+/* ── MAPS ── */
+.map-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; }
+.map-card-header { background: var(--mid); padding: 10px 14px; display: flex; align-items: center; gap: 8px; }
+.map-card-icon { display: flex; align-items: center; }
+.map-card-title { font-size: 12px; font-weight: 600; color: #fff; flex: 1; }
+.map-card-body { padding: 12px 14px; }
+.map-address { font-size: 11px; color: var(--muted); margin-bottom: 10px; line-height: 1.5; }
+.map-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.map-note { font-size: 10px; color: var(--muted); margin-top: 8px; padding-top: 8px; border-top: 1px solid #f0f0f0; line-height: 1.5; }
+
+/* ── ACTION BUTTONS ── */
+.res-action-row { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+.res-action-btn { display: inline-flex; align-items: center; gap: 5px; font-size: 10px; font-weight: 600; padding: 6px 12px; border-radius: 99px; text-decoration: none; cursor: pointer; white-space: nowrap; font-family: 'DM Sans', sans-serif; }
+.btn-call { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+.btn-map { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
+.btn-cal { background: #fef0f2; color: var(--red); border: 1px solid #f5c6ce; }
+.btn-menu { background: #f3e8ff; color: #7c3aed; border: 1px solid #ddd6fe; }
+.cal-btn { display: inline-flex; align-items: center; gap: 4px; font-size: 9px; font-weight: 600; color: var(--red); background: #fef0f2; border: 1px solid #f5c6ce; border-radius: 99px; padding: 3px 8px; margin-top: 6px; cursor: pointer; text-decoration: none; }
+
+/* ── WEATHER ── */
+.weather-hero { background: var(--dark); border-radius: var(--radius); padding: 18px; margin-bottom: 14px; text-align: center; border-top: 3px solid var(--red); }
+.weather-title { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 3px; }
+.weather-sub { font-size: 11px; color: #aaa; margin-bottom: 14px; }
+.weather-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 14px; }
+.weather-day { background: rgba(255,255,255,0.07); border-radius: 8px; padding: 8px 4px; text-align: center; }
+.weather-day-name { font-size: 11px; color: #aaa; font-weight: 600; }
+.weather-day-date { font-size: 9px; color: #666; margin-top: 1px; }
+.weather-icon { font-size: 20px; margin: 6px 0; }
+.weather-high { font-size: 14px; font-weight: 600; color: #fff; }
+.weather-low { font-size: 11px; color: #888; }
+.weather-desc { font-size: 9px; color: #777; margin-top: 2px; }
+.weather-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--red); color: #fff; font-size: 11px; font-weight: 600; padding: 10px 18px; border-radius: 99px; text-decoration: none; }
+.weather-note { font-size: 10px; color: #888; margin-top: 10px; }
+.pack-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; margin-bottom: 10px; }
+.pack-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.pack-list { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+.pack-item { font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 5px; }
+.pack-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+
+/* ── CONTACTS ── */
+.contact-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; }
+.contact-header { background: var(--mid); padding: 8px 14px; }
+.contact-header-title { font-size: 11px; font-weight: 600; color: #aaa; text-transform: uppercase; letter-spacing: 0.05em; }
+.contact-row { display: flex; align-items: center; padding: 11px 14px; border-bottom: 1px solid #f5f5f5; gap: 12px; }
+.contact-row:last-child { border-bottom: none; }
+.contact-icon { width: 36px; height: 36px; border-radius: 9px; background: var(--dark); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.contact-body { flex: 1; min-width: 0; }
+.contact-name { font-size: 12px; font-weight: 600; color: var(--text); }
+.contact-desc { font-size: 10px; color: var(--muted); margin-top: 1px; }
+.contact-call { display: flex; align-items: center; gap: 5px; background: #e8f5e9; color: #2e7d32; font-size: 10px; font-weight: 600; padding: 6px 11px; border-radius: 99px; text-decoration: none; white-space: nowrap; flex-shrink: 0; }
+
+@media (max-width: 380px) {
+  .weather-grid { grid-template-columns: repeat(2, 1fr); }
+  .pack-list { grid-template-columns: 1fr; }
+}
+
+
+/* ── TIMELINE ── */
+.countdown-card { background: var(--dark); border-radius: var(--radius); padding: 20px; margin-bottom: 14px; text-align: center; border-top: 3px solid var(--red); }
+.countdown-label { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+.countdown-number { font-size: 56px; font-weight: 600; color: #fff; font-family: 'DM Mono', monospace; line-height: 1; }
+.countdown-unit { font-size: 12px; color: #888; margin-top: 4px; }
+.countdown-status { font-size: 13px; font-weight: 600; color: var(--red); margin-top: 12px; padding: 8px 18px; background: rgba(200,16,46,0.12); border-radius: 99px; display: inline-block; }
+.countdown-next { font-size: 11px; color: #aaa; margin-top: 10px; line-height: 1.6; }
+.tl-day-group { margin-bottom: 18px; }
+.tl-day-header { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: var(--mid); border-radius: var(--radius) var(--radius) 0 0; }
+.tl-day-label { font-size: 12px; font-weight: 600; color: #fff; flex: 1; }
+.tl-day-prog { font-size: 10px; color: var(--red); font-weight: 600; }
+.tl-item { display: flex; align-items: flex-start; gap: 10px; padding: 11px 14px; background: var(--white); border: 1px solid var(--border); border-top: none; }
+.tl-item:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+.tl-item.past { background: #fafafa; }
+.tl-item.current { background: #fff8f8; border-left: 3px solid var(--red); }
+.tl-check { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+.tl-item.past .tl-check { background: #e8f5e9; border-color: #81c784; }
+.tl-item.current .tl-check { background: var(--red); border-color: var(--red); box-shadow: 0 0 0 3px rgba(200,16,46,0.15); }
+.tl-time { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); min-width: 42px; margin-top: 2px; flex-shrink: 0; }
+.tl-item.past .tl-time { color: #ccc; }
+.tl-item.current .tl-time { color: var(--red); font-weight: 600; }
+.tl-body { flex: 1; min-width: 0; }
+.tl-title { font-size: 12px; font-weight: 600; color: var(--text); line-height: 1.3; }
+.tl-item.past .tl-title { color: #bbb; text-decoration: line-through; text-decoration-color: #ddd; }
+.tl-item.current .tl-title { color: var(--red); }
+.tl-sub { font-size: 10px; color: var(--muted); margin-top: 2px; }
+.tl-item.past .tl-sub { color: #ccc; }
+.tl-badge { font-size: 8px; font-weight: 700; padding: 2px 7px; border-radius: 99px; flex-shrink: 0; margin-top: 2px; }
+.tl-badge.must { background: var(--red); color: #fff; }
+.tl-badge.good { background: var(--light); color: #fff; }
+.tl-badge.flight { background: var(--dark); color: #fff; }
+.tl-badge.dining { background: #e65c00; color: #fff; }
+.tl-badge.now { background: var(--red); color: #fff; animation: tlpulse 1.4s infinite; }
+@keyframes tlpulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+.tl-refresh { text-align: center; margin-bottom: 12px; }
+.tl-refresh-btn { display: inline-flex; align-items: center; gap: 5px; font-size: 10px; color: var(--muted); background: var(--white); border: 1px solid var(--border); border-radius: 99px; padding: 5px 12px; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+
+
+/* ── WEATHER LIVE ── */
+.weather-ai-card { background: var(--dark); border-radius: var(--radius); overflow: hidden; margin-bottom: 10px; border-top: 3px solid var(--red); }
+.wx-header { display: flex; justify-content: space-between; align-items: center; padding: 11px 14px; border-bottom: 1px solid #383838; }
+.wx-header-left { display: flex; align-items: center; gap: 8px; }
+.wx-header-title { font-size: 12px; font-weight: 600; color: #fff; }
+.wx-station-badge { font-size: 9px; color: #888; background: rgba(255,255,255,0.07); padding: 2px 8px; border-radius: 99px; }
+.wx-metar-box { font-family: 'DM Mono', monospace; font-size: 11px; color: #4ade80; background: #0d1117; padding: 12px 14px; line-height: 1.9; word-break: break-word; min-height: 42px; }
+.wx-placeholder { color: #444; font-style: italic; font-size: 11px; }
+.wx-metar-label { color: #666; font-size: 9px; display: block; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.08em; }
+.wx-metar-token { display: inline-block; margin-right: 6px; }
+.wx-metar-token .tk-label { font-size: 8px; color: #555; display: block; line-height: 1; margin-bottom: 1px; }
+.wx-metar-token .tk-val { color: #4ade80; }
+.wx-decoded { padding: 12px 14px 10px; border-top: 1px solid #2a2a2a; }
+.wx-decoded-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 10px; }
+.wx-dec-item { }
+.wx-dec-label { font-size: 9px; color: #666; text-transform: uppercase; letter-spacing: 0.05em; }
+.wx-dec-val { font-size: 14px; font-weight: 600; color: #fff; margin-top: 2px; line-height: 1.2; }
+.wx-dec-sub { font-size: 9px; color: #666; margin-top: 2px; }
+.wx-flight-cat { display: inline-block; font-size: 10px; font-weight: 700; padding: 3px 12px; border-radius: 99px; letter-spacing: 0.06em; }
+.wx-flight-cat.VFR  { background: #166534; color: #4ade80; }
+.wx-flight-cat.MVFR { background: #1e3a5f; color: #60a5fa; }
+.wx-flight-cat.IFR  { background: #7f1d1d; color: #f87171; }
+.wx-flight-cat.LIFR { background: #4a044e; color: #e879f9; }
+.wx-obs-time { font-size: 9px; color: #555; }
+.wx-forecast-day { display: flex; align-items: flex-start; gap: 12px; padding: 11px 14px; border-bottom: 1px solid #2a2a2a; }
+.wx-forecast-day:last-child { border-bottom: none; }
+.wx-fc-icon { font-size: 26px; line-height: 1; flex-shrink: 0; width: 32px; text-align: center; margin-top: 2px; }
+.wx-fc-body { flex: 1; min-width: 0; }
+.wx-fc-name { font-size: 12px; font-weight: 600; color: #fff; }
+.wx-fc-temps { font-size: 11px; color: #aaa; margin-top: 2px; }
+.wx-fc-desc { font-size: 10px; color: #888; margin-top: 4px; line-height: 1.5; }
+.wx-fc-wind { font-size: 10px; color: #666; margin-top: 3px; }
+.wx-fc-rain { font-size: 10px; font-weight: 600; margin-top: 3px; }
+.wx-fc-rain.low  { color: #4ade80; }
+.wx-fc-rain.mid  { color: #facc15; }
+.wx-fc-rain.high { color: #f87171; }
+.wx-footer { display: flex; justify-content: space-between; align-items: center; padding: 9px 14px; border-top: 1px solid #2a2a2a; }
+.wx-updated { font-size: 9px; color: #555; }
+.wx-fetch-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--red); color: #fff; font-size: 10px; font-weight: 600; padding: 7px 14px; border-radius: 99px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+.wx-fetch-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.wx-spinner { width: 12px; height: 12px; border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: wxspin 0.7s linear infinite; }
+@keyframes wxspin { to { transform: rotate(360deg); } }
+.wx-err { color: #f87171; font-size: 10px; padding: 12px 14px; line-height: 1.6; }
+.wx-briefing-placeholder { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 20px; text-align: center; }
+.wx-briefing-placeholder p { font-size: 11px; color: #666; }
+
+</style>
+</head>
+<body>
+
+<!-- ── TOP BAR ── -->
+<div class="topbar">
+  <div class="topbar-left">
+    <span style="font-size:18px;">✈</span>
+    <span class="topbar-title">FSExpo 2026</span>
+  </div>
+  <span class="topbar-conf">FSXP26</span>
+</div>
+
+<!-- ════════════════════════════════
+     PAGE: HOME
+════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <div class="home-hero">
+    <div class="home-logo">✈ FlightSim Airways</div>
+    <div class="home-title">FSExpo 2026</div>
+    <div class="home-subtitle">FlightSimExpo · Saint Paul, Minnesota</div>
+    <div class="home-route">
+      <div>
+        <div class="home-iata">DFW</div>
+        <div class="home-city">Dallas/Fort Worth</div>
+      </div>
+      <div class="home-mid">
+        <div class="home-plane">✈</div>
+        <div class="home-line"></div>
+        <div style="font-size:9px;color:#777;">Round Trip</div>
+      </div>
+      <div style="text-align:right">
+        <div class="home-iata">MSP</div>
+        <div class="home-city">Minneapolis–St. Paul</div>
+      </div>
+    </div>
+    <div class="home-dates">
+      <div class="home-date-item">
+        <div class="home-date-label">Depart</div>
+        <div class="home-date-val">Fri Jun 12</div>
+      </div>
+      <div class="home-date-sep">→</div>
+      <div class="home-date-item">
+        <div class="home-date-label">Return</div>
+        <div class="home-date-val">Mon Jun 15</div>
+      </div>
+      <div class="home-date-sep">·</div>
+      <div class="home-date-item">
+        <div class="home-date-label">Duration</div>
+        <div class="home-date-val">4 Days</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-cards">
+    <div class="home-card" onclick="goTo('itin')">
+      <div class="home-card-icon red">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+      </div>
+      <div class="home-card-body">
+        <div class="home-card-title">Trip Itinerary</div>
+        <div class="home-card-sub">Day-by-day flight plan · Jun 12–15</div>
+      </div>
+      <div class="home-card-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ccc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+    </div>
+    <div class="home-card" onclick="goTo('res')">
+      <div class="home-card-icon">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      </div>
+      <div class="home-card-body">
+        <div class="home-card-title">Reservations</div>
+        <div class="home-card-sub">Flights, hotel, car, conference</div>
+      </div>
+      <div class="home-card-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ccc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+    </div>
+    <div class="home-card" onclick="goTo('dining')">
+      <div class="home-card-icon">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+      </div>
+      <div class="home-card-body">
+        <div class="home-card-title">Dining</div>
+        <div class="home-card-sub">4 restaurant reservations</div>
+      </div>
+      <div class="home-card-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ccc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+    </div>
+    <div class="home-card" onclick="goTo('maps')">
+      <div class="home-card-icon">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+      </div>
+      <div class="home-card-body">
+        <div class="home-card-title">Maps &amp; Directions</div>
+        <div class="home-card-sub">One-tap to every location</div>
+      </div>
+      <div class="home-card-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ccc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+    </div>
+    <div class="home-card" onclick="goTo('weather')">
+      <div class="home-card-icon">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+      </div>
+      <div class="home-card-body">
+        <div class="home-card-title">Weather</div>
+        <div class="home-card-sub">Saint Paul forecast &middot; Jun 12&ndash;15</div>
+      </div>
+      <div class="home-card-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ccc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+    </div>
+    <div class="home-card" onclick="goTo('contacts')">
+      <div class="home-card-icon">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 4.9 2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </div>
+      <div class="home-card-body">
+        <div class="home-card-title">Contacts</div>
+        <div class="home-card-sub">Quick-dial all trip numbers</div>
+      </div>
+      <div class="home-card-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ccc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+    </div>
+  </div>
+
+  <div class="pax-cards" style="margin:0 16px 16px;">
+    <div class="pax-card">
+      <div class="pax-avatar">RK</div>
+      <div class="pax-name">Ron Kratz</div>
+      <div class="pax-role">AAdvantage 46P8RF4</div>
+    </div>
+    <div class="pax-card">
+      <div class="pax-avatar">MS</div>
+      <div class="pax-name">Marco Salazar</div>
+      <div class="pax-role">Travel Companion</div>
+    </div>
+  </div>
+
+  <div class="home-footer">
+    <div class="home-footer-title">✈ FlightSim Airways · Confirmation FSXP26</div>
+    <div class="home-footer-text">
+      American Airlines AA 2152 outbound · AA 2122 return<br>
+      Courtyard Marriott St. Paul · Budget Rental · All activities confirmed
+    </div>
+  </div>
+
+</div>
+
+<!-- ════════════════════════════════
+     PAGE: ITINERARY
+════════════════════════════════ -->
+<div id="page-itin" class="page">
+
+  <div class="day-tabs">
+    <button class="day-tab active" onclick="showDay('fri', this)">Fri<span class="tab-day">Jun 12</span></button>
+    <button class="day-tab" onclick="showDay('sat', this)">Sat<span class="tab-day">Jun 13</span></button>
+    <button class="day-tab" onclick="showDay('sun', this)">Sun<span class="tab-day">Jun 14</span></button>
+    <button class="day-tab" onclick="showDay('mon', this)">Mon<span class="tab-day">Jun 15</span></button>
+  </div>
+
+  <div class="content">
+
+    <!-- FRIDAY -->
+    <div id="day-fri" class="day-section active">
+      <div class="day-header">
+        <span class="day-header-name">Friday, June 12 — #FSExpoFriday</span>
+        <span class="day-header-hours">AA 2152 · DFW 7:17am</span>
+      </div>
+      <div class="seg-card">
+        <div class="seg-top"><span class="seg-fn">AA 2152 · Economy · Boeing 737-800</span><span class="badge b-flight">✈ Outbound</span></div>
+        <div class="leg">
+          <div class="leg-end"><div class="leg-time">7:17a</div><div class="leg-iata">DFW — Dallas/Fort Worth</div><div class="leg-name">Seats 30D · 30F</div></div>
+          <div class="conn"><div class="conn-row"><div class="conn-dot"></div><div class="conn-line"></div><div class="conn-icon">✈</div><div class="conn-line"></div><div class="conn-dot"></div></div><div class="conn-dur">2h 25m Nonstop</div></div>
+          <div class="leg-end right"><div class="leg-time">9:42a</div><div class="leg-iata">MSP — Minneapolis Intl</div><div class="leg-name">Terminal 1</div></div>
+        </div>
+        <div class="seg-note">Budget pickup 10:00am · 4901 Glumack Dr · <span class="cpill">C492739213</span> · <span class="cpill">47383761US5</span> · (612) 726-5237</div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-top"><span class="seg-fn">FSX 001 · MSP → Courtyard Marriott</span><span class="badge b-car">🚗 Drive ~15 min</span></div>
+        <div class="leg">
+          <div class="leg-end"><div class="leg-time">10:00a</div><div class="leg-iata">MSP — Budget Rental</div><div class="leg-name">4901 Glumack Dr</div></div>
+          <div class="conn"><div class="conn-row"><div class="conn-dot"></div><div class="conn-line"></div><div class="conn-icon-gray">🚗</div><div class="conn-line"></div><div class="conn-dot"></div></div><div class="conn-dur">~15 min · 6.8 mi</div></div>
+          <div class="leg-end right"><div class="leg-time">10:15a</div><div class="leg-iata">HOTEL — Courtyard Marriott</div><div class="leg-name">150 Smith Ave N · drop bags</div></div>
+        </div>
+        <div class="seg-note">Check-in not until 3:00pm · Drop bags at front desk · Hotel directly across from RiverCentre · <span class="cpill">#73974591</span></div>
+      </div>
+      
+      <div class="seg-card">
+        <div class="seg-top"><span class="seg-fn">FSX 002 · Lunch near hotel</span><span class="badge b-dining">🍽 Lunch · on your own</span></div>
+        <div class="leg">
+          <div class="leg-end"><div class="leg-time">10:15a</div><div class="leg-iata">HOTEL — Courtyard Marriott</div><div class="leg-name">Drop bags · freshen up</div></div>
+          <div class="conn"><div class="conn-row"><div class="conn-dot"></div><div class="conn-line"></div><div class="conn-icon-gray"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 14 14"/></svg></div><div class="conn-line"></div><div class="conn-dot"></div></div><div class="conn-dur">~45 min</div></div>
+          <div class="leg-end right"><div class="leg-time">11:15a</div><div class="leg-iata">STP — Near hotel</div><div class="leg-name">Done · walk to RiverCentre</div></div>
+        </div>
+        <div class="seg-note">Several options within walking distance on West 7th St and Smith Ave · aim to be at RiverCentre for badge pickup by 11:45am</div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-top"><span class="seg-fn">FSX 004 · #FSExpoFriday Announcements</span><span class="badge b-must">★ Must attend</span></div>
+        <div class="leg">
+          <div class="leg-end"><div class="leg-time">12:00p</div><div class="leg-iata">GRAND — Grand Ballroom</div><div class="leg-name">Announcements begin</div></div>
+          <div class="conn"><div class="conn-row"><div class="conn-dot"></div><div class="conn-line"></div><div class="conn-icon">✈</div><div class="conn-line"></div><div class="conn-dot"></div></div><div class="conn-dur">4h 30m</div></div>
+          <div class="leg-end right"><div class="leg-time">4:30p</div><div class="leg-iata">EXHBT — Exhibit Hall</div><div class="leg-name">Floor opens</div></div>
+        </div>
+        <div class="seg-note">Thrustmaster · X-Plane · Navigraph · MOZA · SayIntentions.AI · iniBuilds · Parallel 42 + more</div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-top"><span class="seg-fn">FSX 005 · Exhibit Hall Preview</span><span class="badge b-good">Exhibit Hall</span></div>
+        <div class="leg">
+          <div class="leg-end"><div class="leg-time">4:30p</div><div class="leg-iata">EXHBT — Exhibit Hall</div><div class="leg-name">70+ booths · first look</div></div>
+          <div class="conn"><div class="conn-row"><div class="conn-dot"></div><div class="conn-line"></div><div class="conn-icon">✈</div><div class="conn-line"></div><div class="conn-dot"></div></div><div class="conn-dur">1h 00m</div></div>
+          <div class="leg-end right"><div class="leg-time">5:30p</div><div class="leg-iata">STP-RC — RiverCentre</div><div class="leg-name">Wrap up · head to hotel</div></div>
+        </div>
+        <div class="seg-note">Scout Thrustmaster, MOZA, Honeycomb, Virtual Fly · plan Saturday priorities</div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-top"><span class="seg-fn">FSX 006 · Hotel Check-In</span><span class="badge b-hotel">🏨 Check-in</span></div>
+        <div class="leg">
+          <div class="leg-end"><div class="leg-time">5:30p</div><div class="leg-iata">STP-RC — RiverCentre</div><div class="leg-name">Depart exhibit hall</div></div>
+          <div class="conn"><div class="conn-row"><div class="conn-dot"></div><div class="conn-line"></div><div class="conn-icon-gray">🚶</div><div class="conn-line"></div><div class="conn-dot"></div></div><div class="conn-dur">2 min walk</div></div>
+          <div class="leg-end right"><div class="leg-time">5:32p</div><div class="leg-iata">HOTEL — Courtyard Marriott</div><div class="leg-name">Formal check-in · freshen up</div></div>
+        </div>
+        <div class="seg-note">Conf <span class="cpill">#73974591</span> · Freshen up · depart for Holman's Table at 6:45pm</div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-top"><span class="seg-fn">FSX 007 · Dinner — Holman's Table</span><span class="badge b-dining">🍽 Conf #58925</span></div>
+        <div class="leg">
+          <div class="leg-end"><div class="leg-time">6:45p</div><div class="leg-iata">HOTEL — Courtyard Marriott</div><div class="leg-name">Depart for dinner</div></div>
+          <div class="conn"><div class="conn-row"><div class="conn-dot"></div><div class="conn-line"></div><div class="conn-icon-gray">🚗</div><div class="conn-line"></div><div class="conn-dot"></div></div><div class="conn-dur">~8 min · 2.5 mi</div></div>
+          <div class="leg-end right"><div class="leg-time">7:00p</div><div class="leg-iata">KSTP — Holman's Table</div><div class="leg-name">644 Bayfield St · 1.5 hrs</div></div>
+        </div>
+        <div class="seg-note">Ron Kratz & Marco Salazar · table for 2 · <span class="cpill">#58925</span> · (612) 800-5298 · Named for Charles "Speed" Holman · done ~8:30pm</div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-top"><span class="seg-fn">FSX 008 · Planespotting — Holman Field</span><span class="badge b-spot">✈ Aviation · Free</span></div>
+        <div class="leg">
+          <div class="leg-end"><div class="leg-time">8:30p</div><div class="leg-iata">KSTP — Holman Field</div><div class="leg-name">Stay on field after dinner</div></div>
+          <div class="conn"><div class="conn-row"><div class="conn-dot"></div><div class="conn-line"></div><div class="conn-icon">✈</div><div class="conn-line"></div><div class="conn-dot"></div></div><div class="conn-dur">Until ~10:00pm</div><div class="conn-type">Tower open til 10pm</div></div>
+          <div class="leg-end right"><div class="leg-time">10:00p</div><div class="leg-iata">HOTEL — Courtyard Marriott</div><div class="leg-name">~8 min drive · rest up</div></div>
+        </div>
+        <div class="seg-note">Active GA traffic · National Guard Blackhawks · 1939 WPA Art Deco terminal · Mississippi River views · Free</div>
+      </div>
+    </div>
+
+    <!-- SATURDAY -->
+    <div id="day-sat" class="day-section">
+      <div class="day-header">
+        <span class="day-header-name">Saturday, June 13</span>
+        <span class="day-header-hours">Show 9am–6pm</span>
+      </div>
+      <div class="seg-card">
+        <div class="seg-top"><span class="seg-fn">FSX 009 · Hotel → RiverCentre</span><span class="badge b-walk">🚶 Walk · 2 min</span></div>
+        <div class="leg">
+          <div class="leg-end"><div class="leg-time">9:00a</div><div class="leg-iata">HOTEL — Courtyard Marriott</div><div class="leg-name">Depart for show floor</div></div>
+          <div class="conn"><div class="conn-row"><div class="conn-dot"></div><div class="conn-line"></div><div class="conn-icon-gray">🚶</div><div class="conn-line"></div><div class="conn-dot"></div></div><div class="conn-dur">2 min walk</div></div>
+          <div class="leg-end right"><div class="leg-time">9:02a</div><div class="leg-iata">STP-RC — RiverCentre</div><div class="leg-name">Early floor pass</div></div>
+        </div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-top"><span class="seg-fn">FSX 010 · Aircraft Failures + SayIntentions Deep-Dive</span><span class="badge b-must">★ Must attend</span></div>
+        <div class="leg">
+          <div class="leg-end"><div class="leg-time">10:00a</div><div class="leg-iata">SAY-1 — SayIntentions.AI Stage</div><div class="leg-name">Aircraft Failures · 1 WINGS credit</div></div>
+          <div class="conn"><div class="conn-row"><div class="conn-dot"></div><div class="conn-line"></div><div class="conn-icon">✈</div><div class="conn-line"></div><div class="conn-dot"></div></div><div class="conn-dur">Stay seated → 11am</div></div>
+          <div class="leg-end right"><div class="leg-time">12:00p</div><div class="leg-iata">SAY-2 — SayIntentions.AI Stage</div><div class="leg-name">Deep-dive ends</div></div>
+        </div>
+        <div class="seg-note">10–11am: Aircraft Failures · David Sullivan-Nightengale · 1 FAA WINGS credit · Stay seated · 11am–12pm: SayIntentions.AI announcements & roadmap · Brian Shellabarger</div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-top"><span class="seg-fn">FSX 011 · Exhibit Hall + Thrustmaster</span><span class="badge b-good">Hardware time</span></div>
+        <div class="leg">
+          <div class="leg-end"><div class="leg-time">12:00p</div><div class="leg-iata">EXHBT — Exhibit Hall</div><div class="leg-name">Hardware booths · lunch</div></div>
+          <div class="conn"><div class="conn-row"><div class="conn-dot"></div><div class="conn-line"></div><div class="conn-icon">✈</div><div class="conn-line"></div><div class="conn-dot"></div></div><div class="conn-dur">Thrustmaster 12:10</div><div class="conn-type">FSElite Stage</div></div>
+          <div class="leg-end right"><div class="leg-time">1:00p</div><div class="leg-iata">SAY-3 — SayIntentions.AI Stage</div><div class="leg-name">Flight Dispatch begins</div></div>
+        </div>
+        <div class="seg-note">Thrustmaster, MOZA, Honeycomb, Virtual Fly · Thrustmaster on FSElite Stage 12:10–12:30 · grab lunch before 1pm</div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-top"><span class="seg-fn">FSX 012 · Afternoon Sessions</span><span class="badge b-good">Strong picks</span></div>
+        <div class="leg">
+          <div class="leg-end"><div class="leg-time">1:00p</div><div class="leg-iata">SAY-3 — SayIntentions.AI Stage</div><div class="leg-name">Flight Dispatch</div></div>
+          <div class="conn"><div class="conn-row"><div class="conn-dot"></div><div class="conn-line"></div><div class="conn-icon">✈</div><div class="conn-line"></div><div class="conn-dot"></div></div><div class="conn-dur">→ Injector 3pm → MSFS 4pm</div></div>
+          <div class="leg-end right"><div class="leg-time">5:00p</div><div class="leg-iata">FSE-1 — FSElite Stage</div><div class="leg-name">Microsoft reveal ends</div></div>
+        </div>
+        <div class="seg-note">1–2pm: Flight Dispatch · 2–3pm: floor pass · 3–4pm: Traffic Injector (SayIntentions.AI Stage) · 4–5pm: Microsoft MSFS 2024 major reveal (FSElite Stage)</div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-top"><span class="seg-fn">FSX 013 · Hotel Freshen Up</span><span class="badge b-hotel">🚶 Walk · 2 min</span></div>
+        <div class="leg">
+          <div class="leg-end"><div class="leg-time">5:00p</div><div class="leg-iata">FSE-1 — FSElite Stage</div><div class="leg-name">Reveal ends</div></div>
+          <div class="conn"><div class="conn-row"><div class="conn-dot"></div><div class="conn-line"></div><div class="conn-icon-gray">🚶</div><div class="conn-line"></div><div class="conn-dot"></div></div><div class="conn-dur">2 min walk</div></div>
+          <div class="leg-end right"><div class="leg-time">5:10p</div><div class="leg-iata">HOTEL — Courtyard Marriott</div><div class="leg-name">Freshen up before evening</div></div>
+        </div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-top"><span class="seg-fn">FSX 014 · Dinner — 1881 Eating House</span><span class="badge b-dining">🍽 Conf #16474</span></div>
+        <div class="leg">
+          <div class="leg-end"><div class="leg-time">6:10p</div><div class="leg-iata">HOTEL — Courtyard Marriott</div><div class="leg-name">Depart for Union Depot</div></div>
+          <div class="conn"><div class="conn-row"><div class="conn-dot"></div><div class="conn-line"></div><div class="conn-icon-gray">🚗</div><div class="conn-line"></div><div class="conn-dot"></div></div><div class="conn-dur">~5 min · 0.8 mi</div></div>
+          <div class="leg-end right"><div class="leg-time">6:15p</div><div class="leg-iata">1881 — 1881 Eating House</div><div class="leg-name">Union Depot · ~1 hr</div></div>
+        </div>
+        <div class="seg-note">Conf <span class="cpill">#16474</span> · 214 4th St E Suite 300 · (952) 698-1881 · done ~7:15pm · walk into DGPilot same building</div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-top"><span class="seg-fn">FSX 015 · DGPilot Happy Hour</span><span class="badge b-social">🍹 FSExpo Add-On</span></div>
+        <div class="leg">
+          <div class="leg-end"><div class="leg-time">7:15p</div><div class="leg-iata">1881 — Dinner ends</div><div class="leg-name">Walk into DGPilot · same building</div></div>
+          <div class="conn"><div class="conn-row"><div class="conn-dot"></div><div class="conn-line"></div><div class="conn-icon-gray">🚶</div><div class="conn-line"></div><div class="conn-dot"></div></div><div class="conn-dur">1 hr · 7:30–8:30pm</div></div>
+          <div class="leg-end right"><div class="leg-time">8:30p</div><div class="leg-iata">DGPLT — DGPilot</div><div class="leg-name">Done · drive back ~5 min</div></div>
+        </div>
+        <div class="seg-note">Aviation & travel gifts · free cocktail · flight sim competition · FSExpo attendees only · Union Depot</div>
+      </div>
+    </div>
+
+    <!-- SUNDAY -->
+    <div id="day-sun" class="day-section">
+      <div class="day-header">
+        <span class="day-header-name">Sunday, June 14</span>
+        <span class="day-header-hours">Show 9am–3pm · Mall of America</span>
+      </div>
+      <div class="seg-card">
+        <div class="seg-top"><span class="seg-fn">FSX 016 · Hotel → RiverCentre · Early Pass</span><span class="badge b-walk">🚶 Walk · 2 min</span></div>
+        <div class="leg">
+          <div class="leg-end"><div class="leg-time">9:00a</div><div class="leg-iata">HOTEL — Courtyard Marriott</div><div class="leg-name">Depart for show floor</div></div>
+          <div class="conn"><div class="conn-row"><div class="conn-dot"></div><div class="conn-line"></div><div class="conn-icon-gray">🚶</div><div class="conn-line"></div><div class="conn-dot"></div></div><div class="conn-dur">2 min walk</div></div>
+          <div class="leg-end right"><div class="leg-time">9:02a</div><div class="leg-iata">EXHBT — Exhibit Hall</div><div class="leg-name">Early floor pass before crowds</div></div>
+        </div>
+        <div class="seg-note">9:00–10:40am: remaining hardware booths · then FlyByWire at 10:40am on FSElite Stage</div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-top"><span class="seg-fn">FSX 017 · FlyByWire + Simulator to Sky</span><span class="badge b-good">Strong picks</span></div>
+        <div class="leg">
+          <div class="leg-end"><div class="leg-time">10:40a</div><div class="leg-iata">FSE-2 — FSElite Stage</div><div class="leg-name">FlyByWire · 20 min</div></div>
+          <div class="conn"><div class="conn-row"><div class="conn-dot"></div><div class="conn-line"></div><div class="conn-icon">✈</div><div class="conn-line"></div><div class="conn-dot"></div></div><div class="conn-dur">Stay seated → 11am</div></div>
+          <div class="leg-end right"><div class="leg-time">11:30a</div><div class="leg-iata">FSE-3 — FSElite Stage</div><div class="leg-name">Simulator to Sky ends</div></div>
+        </div>
+        <div class="seg-note">10:40–11:00am: FlyByWire freeware · 11:00–11:30am: From Simulator to Sky · Scott Shaffer · then move to SayIntentions.AI Stage</div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-top"><span class="seg-fn">FSX 018 · SayIntentions Deep Dive + Q&A</span><span class="badge b-must">★ Not recorded</span></div>
+        <div class="leg">
+          <div class="leg-end"><div class="leg-time">11:00a</div><div class="leg-iata">SAY-5 — SayIntentions.AI Stage</div><div class="leg-name">A Deep Dive · Shellabarger</div></div>
+          <div class="conn"><div class="conn-row"><div class="conn-dot"></div><div class="conn-line"></div><div class="conn-icon">✈</div><div class="conn-line"></div><div class="conn-dot"></div></div><div class="conn-dur">Stay seated → Q&A 12pm</div></div>
+          <div class="leg-end right"><div class="leg-time">1:00p</div><div class="leg-iata">SAY-6 — SayIntentions.AI Stage</div><div class="leg-name">Q&A ends · final floor pass</div></div>
+        </div>
+        <div class="seg-note">11am–12pm: Deep Dive — in-person only · will NOT be recorded · 12–1pm: Q&A with SayIntentions.AI team · bring questions</div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-top"><span class="seg-fn">FSX 019 · Closing Ceremony · FSExpo 2027</span><span class="badge b-must">★ Must attend</span></div>
+        <div class="leg">
+          <div class="leg-end"><div class="leg-time">2:30p</div><div class="leg-iata">FSE-X — FSElite Stage</div><div class="leg-name">Thank You & FSExpo 2027</div></div>
+          <div class="conn"><div class="conn-row"><div class="conn-dot"></div><div class="conn-line"></div><div class="conn-icon">✈</div><div class="conn-line"></div><div class="conn-dot"></div></div><div class="conn-dur">30 min · closes 3pm</div></div>
+          <div class="leg-end right"><div class="leg-time">3:00p</div><div class="leg-iata">STP-RC — RiverCentre</div><div class="leg-name">Show closes · head to car</div></div>
+        </div>
+        <div class="seg-note">Be off the floor and in the room by 2:30pm · 2027 venue announcement · wrap up floor pass by 2:15pm</div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-top"><span class="seg-fn">FSX 020 · Mall of America · FlyOver America</span><span class="badge b-social">🛍 FlyOver America</span></div>
+        <div class="leg">
+          <div class="leg-end"><div class="leg-time">3:15p</div><div class="leg-iata">STP-RC — RiverCentre</div><div class="leg-name">Drive south on I-35E</div></div>
+          <div class="conn"><div class="conn-row"><div class="conn-dot"></div><div class="conn-line"></div><div class="conn-icon-gray">🚗</div><div class="conn-line"></div><div class="conn-dot"></div></div><div class="conn-dur">~20 min · 12 mi</div></div>
+          <div class="leg-end right"><div class="leg-time">3:35p</div><div class="leg-iata">MOA — Mall of America</div><div class="leg-name">Bloomington · 3 hours</div></div>
+        </div>
+        <div class="seg-note">FlyOver America flight sim ride · immersive aerial tour · 3 hours · done ~6:35pm · walk to FireLake Grill</div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-top"><span class="seg-fn">FSX 021 · Dinner — FireLake Grill House</span><span class="badge b-dining">🍽 Conf #2110047863</span></div>
+        <div class="leg">
+          <div class="leg-end"><div class="leg-time">6:35p</div><div class="leg-iata">MOA — Mall of America</div><div class="leg-name">Walk to Radisson Blu</div></div>
+          <div class="conn"><div class="conn-row"><div class="conn-dot"></div><div class="conn-line"></div><div class="conn-icon-gray">🚶</div><div class="conn-line"></div><div class="conn-dot"></div></div><div class="conn-dur">~5 min walk</div></div>
+          <div class="leg-end right"><div class="leg-time">7:00p</div><div class="leg-iata">FIRE — FireLake Grill House</div><div class="leg-name">Radisson Blu · MOA · 1.5 hrs</div></div>
+        </div>
+        <div class="seg-note">Conf <span class="cpill">#2110047863</span> · 2100 Killebrew Dr · (952) 851-4040 · Upscale farm-to-table · done ~8:30pm · drive back to hotel ~20 min</div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-top"><span class="seg-fn">FSX 022 · FireLake → Hotel</span><span class="badge b-car">🚗 Drive ~20 min</span></div>
+        <div class="leg">
+          <div class="leg-end"><div class="leg-time">8:30p</div><div class="leg-iata">FIRE — FireLake Grill</div><div class="leg-name">Dinner done</div></div>
+          <div class="conn"><div class="conn-row"><div class="conn-dot"></div><div class="conn-line"></div><div class="conn-icon-gray">🚗</div><div class="conn-line"></div><div class="conn-dot"></div></div><div class="conn-dur">~20 min · 12 mi</div><div class="conn-type">Drive north I-35E</div></div>
+          <div class="leg-end right"><div class="leg-time">8:50p</div><div class="leg-iata">HOTEL — Courtyard Marriott</div><div class="leg-name">Rest up · early start tomorrow</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MONDAY -->
+    <div id="day-mon" class="day-section">
+      <div class="day-header">
+        <span class="day-header-name">Monday, June 15 — Departure</span>
+        <span class="day-header-hours">Check-out 11am · AA 2122 3:07pm</span>
+      </div>
+      <div class="seg-card">
+        <div class="seg-top"><span class="seg-fn">FSX 023 · Hotel Check-Out</span><span class="badge b-hotel">🏨 By 11:00am</span></div>
+        <div class="leg">
+          <div class="leg-end"><div class="leg-time">10:00a</div><div class="leg-iata">HOTEL — Courtyard Marriott</div><div class="leg-name">Pack · load car · settle bill</div></div>
+          <div class="conn"><div class="conn-row"><div class="conn-dot"></div><div class="conn-line"></div><div class="conn-icon-gray">🏨</div><div class="conn-line"></div><div class="conn-dot"></div></div><div class="conn-dur">By 11:00am</div></div>
+          <div class="leg-end right"><div class="leg-time">11:00a</div><div class="leg-iata">HOTEL — Checked out</div><div class="leg-name">Head to breakfast</div></div>
+        </div>
+        <div class="seg-note">Conf <span class="cpill">#73974591</span> · 150 Smith Ave N · +1-651-204-4050</div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-top"><span class="seg-fn">FSX 024 · Breakfast — The Buttered Tin</span><span class="badge b-dining">☕ En route to MSP</span></div>
+        <div class="leg">
+          <div class="leg-end"><div class="leg-time">11:05a</div><div class="leg-iata">HOTEL — Courtyard Marriott</div><div class="leg-name">Depart · drive West 7th St</div></div>
+          <div class="conn"><div class="conn-row"><div class="conn-dot"></div><div class="conn-line"></div><div class="conn-icon-gray">🚗</div><div class="conn-line"></div><div class="conn-dot"></div></div><div class="conn-dur">~5 min · on route</div></div>
+          <div class="leg-end right"><div class="leg-time">11:10a</div><div class="leg-iata">BTIN — The Buttered Tin</div><div class="leg-name">West 7th St · ~45 min</div></div>
+        </div>
+        <div class="seg-note">Top-rated Saint Paul breakfast · directly on route to MSP · sandwiches, pastries, coffee · done ~11:55am</div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-top"><span class="seg-fn">FSX 025 · Budget Car Return</span><span class="badge b-car">🚗 By 12:30pm</span></div>
+        <div class="leg">
+          <div class="leg-end"><div class="leg-time">11:55a</div><div class="leg-iata">BTIN — The Buttered Tin</div><div class="leg-name">Depart · drive to Budget</div></div>
+          <div class="conn"><div class="conn-row"><div class="conn-dot"></div><div class="conn-line"></div><div class="conn-icon-gray">🚗</div><div class="conn-line"></div><div class="conn-dot"></div></div><div class="conn-dur">~10 min · 4 mi</div></div>
+          <div class="leg-end right"><div class="leg-time">12:05p</div><div class="leg-iata">MSP — Budget Return</div><div class="leg-name">4901 Glumack Dr · before 12:30pm</div></div>
+        </div>
+        <div class="seg-note"><span class="cpill">47383761US5</span> · Deadline 12:30pm · Shuttle to Terminal 1 · Clear security · AA 2122 departs 3:07pm</div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-top"><span class="seg-fn">AA 2122 · Economy · Boeing 737-800</span><span class="badge b-flight">✈ Return</span></div>
+        <div class="leg">
+          <div class="leg-end"><div class="leg-time">3:07p</div><div class="leg-iata">MSP — Minneapolis Intl</div><div class="leg-name">Seats 30D · 30F</div></div>
+          <div class="conn"><div class="conn-row"><div class="conn-dot"></div><div class="conn-line"></div><div class="conn-icon">✈</div><div class="conn-line"></div><div class="conn-dot"></div></div><div class="conn-dur">2h 40m Nonstop</div></div>
+          <div class="leg-end right"><div class="leg-time">5:47p</div><div class="leg-iata">DFW — Dallas/Fort Worth</div><div class="leg-name">Welcome home, Ron & Marco</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     PAGE: RESERVATIONS
+════════════════════════════════ -->
+<div id="page-res" class="page">
+  <div class="content">
+
+    <!-- FLIGHTS -->
+    <div class="res-section">
+      <div class="res-section-header">
+        <span class="res-section-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span>
+        <span class="res-section-title">Flights — American Airlines</span>
+      </div>
+      <div class="res-card">
+        <div class="res-name">AA 2152 — Outbound</div>
+        <div class="res-grid">
+          <div class="res-item"><div class="res-label">Date</div><div class="res-value">Friday, June 12, 2026</div></div>
+          <div class="res-item"><div class="res-label">Route</div><div class="res-value">DFW → MSP</div></div>
+          <div class="res-item"><div class="res-label">Departs</div><div class="res-value">7:17 AM</div></div>
+          <div class="res-item"><div class="res-label">Arrives</div><div class="res-value">9:42 AM</div></div>
+          <div class="res-item"><div class="res-label">Aircraft</div><div class="res-value">Boeing 737-800</div></div>
+          <div class="res-item"><div class="res-label">Seats</div><div class="res-value">30D · 30F · Economy</div></div>
+        </div>
+        <div class="res-conf"><span class="res-conf-label">AA Conf</span><span class="res-conf-val">IPQUNV</span></div>
+        <div class="res-divider"></div>
+        <div class="res-name">AA 2122 — Return</div>
+        <div class="res-grid">
+          <div class="res-item"><div class="res-label">Date</div><div class="res-value">Monday, June 15, 2026</div></div>
+          <div class="res-item"><div class="res-label">Route</div><div class="res-value">MSP → DFW</div></div>
+          <div class="res-item"><div class="res-label">Departs</div><div class="res-value">3:07 PM</div></div>
+          <div class="res-item"><div class="res-label">Arrives</div><div class="res-value">5:47 PM</div></div>
+          <div class="res-item"><div class="res-label">Aircraft</div><div class="res-value">Boeing 737-800</div></div>
+          <div class="res-item"><div class="res-label">Seats</div><div class="res-value">30D · 30F · Economy</div></div>
+        </div>
+        <div class="res-conf"><span class="res-conf-label">AA Conf</span><span class="res-conf-val">IPQUNV</span></div>
+        <div class="res-divider"></div>
+        <div class="res-pax-row">
+          <div class="res-pax-pill"><div class="pax-init">RK</div>Ron Kratz · AAdvantage 46P8RF4</div>
+        </div>
+        <div style="margin-top:6px;" class="res-pax-row">
+          <div class="res-pax-pill"><div class="pax-init">MS</div>Marco Salazar</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOTEL -->
+    <div class="res-section">
+      <div class="res-section-header">
+        <span class="res-section-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+        <span class="res-section-title">Hotel — Courtyard by Marriott</span>
+      </div>
+      <div class="res-card">
+        <div class="res-name">Courtyard by Marriott St. Paul Downtown</div>
+        <div class="res-grid">
+          <div class="res-item"><div class="res-label">Check-In</div><div class="res-value">Fri, Jun 12 · 3:00 PM</div></div>
+          <div class="res-item"><div class="res-label">Check-Out</div><div class="res-value">Mon, Jun 15 · 11:00 AM</div></div>
+          <div class="res-item"><div class="res-label">Nights</div><div class="res-value">3 nights</div></div><div class="res-item"><div class="res-label">Rooms</div><div class="res-value">1 Room</div></div>
+          <div class="res-item"><div class="res-label">Guests</div><div class="res-value">2 Adults · Ronald Kratz &amp; Marco Salazar</div></div>
+          <div class="res-item res-item-full" style="grid-column:1/-1"><div class="res-label">Address</div><div class="res-value">150 Smith Ave North, St Paul, MN 55102</div></div>
+        </div>
+        <div class="res-conf"><span class="res-conf-label">Marriott Conf</span><span class="res-conf-val">73974591</span></div>
+        <div class="res-phone">📞 <a href="tel:+16512044050">+1-651-204-4050</a></div>
+      </div>
+    </div>
+
+    <!-- CAR RENTAL -->
+    <div class="res-section">
+      <div class="res-section-header">
+        <span class="res-section-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span>
+        <span class="res-section-title">Car Rental — Budget</span>
+      </div>
+      <div class="res-card">
+        <div class="res-name">Budget Car Rental — MSP Airport</div>
+        <div class="res-grid">
+          <div class="res-item"><div class="res-label">Pickup</div><div class="res-value">Fri, Jun 12 · 10:00 AM</div></div>
+          <div class="res-item"><div class="res-label">Drop-Off</div><div class="res-value">Mon, Jun 15 · 12:30 PM</div></div>
+          <div class="res-item res-item-full" style="grid-column:1/-1"><div class="res-label">Location</div><div class="res-value">Minneapolis–Saint Paul Intl Airport · 4901 Glumack Dr, St Paul, MN 55111</div></div>
+        </div>
+        <div class="res-conf"><span class="res-conf-label">Costco #</span><span class="res-conf-val">C492739213</span></div>
+        <div class="res-conf" style="margin-top:6px;"><span class="res-conf-label">Budget #</span><span class="res-conf-val">47383761US5</span></div>
+        <div class="res-phone">📞 <a href="tel:6127265237">(612) 726-5237</a></div>
+      </div>
+    </div>
+
+    <!-- CONFERENCE -->
+    <div class="res-section">
+      <div class="res-section-header">
+        <span class="res-section-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></span>
+        <span class="res-section-title">Conference — FlightSimExpo 2026</span>
+      </div>
+      <div class="res-card">
+        <div class="res-name">Ron Kratz</div>
+        <div class="res-grid">
+          <div class="res-item"><div class="res-label">Event</div><div class="res-value">FlightSimExpo 2026</div></div>
+          <div class="res-item"><div class="res-label">Dates</div><div class="res-value">Jun 12–14, 2026</div></div>
+          <div class="res-item res-item-full" style="grid-column:1/-1"><div class="res-label">Venue</div><div class="res-value">Saint Paul RiverCentre, Saint Paul, MN</div></div>
+        </div>
+        <div class="res-conf"><span class="res-conf-label">Registration #</span><span class="res-conf-val" style="font-size:10px;">01KCF0HN780JQN63VSF</span></div>
+        <div class="res-divider"></div>
+        <div class="res-name">Marco Salazar</div>
+        <div class="res-conf"><span class="res-conf-label">Registration #</span><span class="res-conf-val" style="font-size:10px;">01KCF0HNTJG7JH7CVWX</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     PAGE: DINING
+════════════════════════════════ -->
+<div id="page-dining" class="page">
+  <div class="content">
+
+        <div class="dining-card">
+      <div class="dining-header">
+        <span class="dining-name">Holman's Table</span>
+        <span class="dining-day">Fri Jun 12 · Dinner</span>
+      </div>
+      <div class="dining-body">
+        <div class="dining-row"><span class="dining-label">Reservation</span><span class="dining-val">7:00 PM · Table for 2</span></div>
+        <div class="dining-row"><span class="dining-label">Name</span><span class="dining-val">Ron Kratz</span></div>
+        <div class="dining-row"><span class="dining-label">Address</span><span class="dining-val">644 Bayfield St, Saint Paul, MN 55107</span></div>
+        <div class="dining-row"><span class="dining-label">Duration</span><span class="dining-val">1.5 hrs · done ~8:30pm</span></div>
+        <div class="dining-conf"><span>Conf #</span><span>58925</span></div>
+        <div class="dining-phone">📞 <a href="tel:6128005298">(612) 800-5298</a></div>
+        <div class="dining-actions" style="margin-top:9px;"><a class="res-action-btn btn-menu" href="https://www.holmanstable.com/dinner" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>View Menu</a>
+          <a class="res-action-btn btn-map" href="https://maps.google.com/?saddr=150+Smith+Ave+N,+Saint+Paul,+MN+55102&daddr=644+Bayfield+St,+Saint+Paul,+MN+55107&dirflg=d" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>Directions</a>
+        </div>
+        <div class="dining-note">Located inside the historic 1939 WPA Art Deco terminal at St. Paul Downtown Airport (KSTP) · Named for Charles "Speed" Holman, first Northwest Airways pilot · Watch GA traffic and National Guard Blackhawks on the runway · Stay on field for planespotting after dinner until ~10pm</div>
+      </div>
+    </div>
+
+    <div class="dining-card">
+      <div class="dining-header">
+        <span class="dining-name">1881 Eating House</span>
+        <span class="dining-day">Sat Jun 13 · Dinner</span>
+      </div>
+      <div class="dining-body">
+        <div class="dining-row"><span class="dining-label">Reservation</span><span class="dining-val">6:15 PM · Table for 2</span></div>
+        <div class="dining-row"><span class="dining-label">Name</span><span class="dining-val">Ron Kratz</span></div>
+        <div class="dining-row"><span class="dining-label">Address</span><span class="dining-val">214 4th St E Suite 300, Saint Paul, MN 55101</span></div>
+        <div class="dining-row"><span class="dining-label">Duration</span><span class="dining-val">~1 hr · done ~7:15pm</span></div>
+        <div class="dining-conf"><span>Conf #</span><span>16474</span></div>
+        <div class="dining-phone">📞 <a href="tel:9526981881">(952) 698-1881</a></div>
+        <div class="dining-actions" style="margin-top:9px;"><a class="res-action-btn btn-menu" href="https://www.1881eatinghouse.com/menu" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>View Menu</a>
+          <a class="res-action-btn btn-map" href="https://maps.google.com/?saddr=150+Smith+Ave+N,+Saint+Paul,+MN+55102&daddr=214+4th+St+E,+Saint+Paul,+MN+55101&dirflg=d" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>Directions</a>
+        </div>
+        <div class="dining-note">Modern gastropub inside Saint Paul's historic Union Depot · After dinner walk directly into DGPilot Happy Hour in the same building · DGPilot open to FSExpo attendees 7:30–9:00pm with free cocktail and flight sim competition</div>
+      </div>
+    </div>
+
+    <div class="dining-card">
+      <div class="dining-header">
+        <span class="dining-name">FireLake Grill House</span>
+        <span class="dining-day">Sun Jun 14 · Dinner</span>
+      </div>
+      <div class="dining-body">
+        <div class="dining-row"><span class="dining-label">Reservation</span><span class="dining-val">7:00 PM · Table for 2</span></div>
+        <div class="dining-row"><span class="dining-label">Name</span><span class="dining-val">Ron Kratz</span></div>
+        <div class="dining-row"><span class="dining-label">Address</span><span class="dining-val">2100 Killebrew Drive, Bloomington, MN 55425</span></div>
+        <div class="dining-row"><span class="dining-label">Location</span><span class="dining-val">Radisson Blu at Mall of America</span></div>
+        <div class="dining-row"><span class="dining-label">Duration</span><span class="dining-val">1.5 hrs · done ~8:30pm</span></div>
+        <div class="dining-conf"><span>Conf #</span><span>2110047863</span></div>
+        <div class="dining-phone">📞 <a href="tel:9528514040">(952) 851-4040</a></div>
+        <div class="dining-actions" style="margin-top:9px;"><a class="res-action-btn btn-menu" href="https://www.firelakerestaurant.com/mall-of-america-menu/" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>View Menu</a>
+          <a class="res-action-btn btn-map" href="https://maps.google.com/?saddr=150+Smith+Ave+N,+Saint+Paul,+MN+55102&daddr=2100+Killebrew+Dr,+Bloomington,+MN+55425&dirflg=d" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>Directions</a>
+        </div>
+        <div class="dining-note">Upscale farm-to-table · Minnesota seasonal flavors · Walk ~5 min from Mall of America after FlyOver America ride · Drive back to hotel ~20 min north on I-35E</div>
+      </div>
+    </div>
+
+    <div class="dining-card">
+      <div class="dining-header">
+        <span class="dining-name">The Buttered Tin</span>
+        <span class="dining-day">Mon Jun 15 · Breakfast</span>
+      </div>
+      <div class="dining-body">
+        <div class="dining-row"><span class="dining-label">Time</span><span class="dining-val">~11:10 AM · ~45 min</span></div>
+        <div class="dining-row"><span class="dining-label">Party</span><span class="dining-val">Ron Kratz & Marco Salazar</span></div>
+        <div class="dining-row"><span class="dining-label">Address</span><span class="dining-val">West 7th St, Saint Paul, MN</span></div>
+        <div class="dining-row"><span class="dining-label">Confirmation</span><span class="dining-val">Walk-in</span></div>
+        <div class="dining-actions">
+          <a class="res-action-btn btn-menu" href="https://www.thebutteredtin.com/menus/st-paul-menus/" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Menu</a>
+          <a class="res-action-btn btn-map" href="https://maps.google.com/?saddr=150+Smith+Ave+N,+Saint+Paul,+MN+55102&daddr=686+N+Dale+St,+Saint+Paul,+MN+55103&dirflg=d" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>Directions</a>
+        </div>
+        <div class="dining-note">Top-rated Saint Paul breakfast spot · directly on route from hotel to MSP airport · exceptional breakfast sandwiches, pastries, and coffee · done ~11:55am · drive to Budget car return immediately after</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- MAPS PAGE -->
+<div id="page-maps" class="page">
+  <div class="content">
+    <div class="map-card">
+      <div class="map-card-header"><span class="map-card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span><span class="map-card-title">MSP Airport &mdash; Budget Car Rental</span></div>
+      <div class="map-card-body"><div class="map-address">4901 Glumack Dr, Saint Paul, MN 55111</div><div class="map-actions"><a class="res-action-btn btn-map" href="https://maps.google.com/?q=4901+Glumack+Dr+Saint+Paul+MN+55111" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>Open in Maps</a><a class="res-action-btn btn-call" href="tel:6127265237"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 4.9 2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(612) 726-5237</a></div><div class="map-note">~15 min from hotel &middot; Pickup Jun 12 10am &middot; Drop-off Jun 15 by 12:30pm</div></div>
+    </div>
+    <div class="map-card">
+      <div class="map-card-header"><span class="map-card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span class="map-card-title">Courtyard Marriott St. Paul &mdash; Your Hotel</span></div>
+      <div class="map-card-body"><div class="map-address">150 Smith Ave North, Saint Paul, MN 55102</div><div class="map-actions"><a class="res-action-btn btn-map" href="https://maps.google.com/?q=150+Smith+Ave+North+Saint+Paul+MN+55102" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>Open in Maps</a><a class="res-action-btn btn-call" href="tel:+16512044050"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 4.9 2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+1-651-204-4050</a></div><div class="map-note">Directly across the street from Saint Paul RiverCentre &middot; ~2 min walk to FSExpo</div></div>
+    </div>
+    <div class="map-card">
+      <div class="map-card-header"><span class="map-card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7"/></svg></span><span class="map-card-title">Saint Paul RiverCentre &mdash; FSExpo Venue</span></div>
+      <div class="map-card-body"><div class="map-address">175 W Kellogg Blvd, Saint Paul, MN 55102</div><div class="map-actions"><a class="res-action-btn btn-map" href="https://maps.google.com/?q=175+W+Kellogg+Blvd+Saint+Paul+MN+55102" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>Open in Maps</a></div><div class="map-note">Fri noon&ndash;7pm &middot; Sat 9am&ndash;6pm &middot; Sun 9am&ndash;3pm</div></div>
+    </div>
+    <div class="map-card">
+      <div class="map-card-header"><span class="map-card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span><span class="map-card-title">Holman's Table &mdash; Holman Field (KSTP)</span></div>
+      <div class="map-card-body"><div class="map-address">644 Bayfield St, Saint Paul, MN 55107</div><div class="map-actions"><a class="res-action-btn btn-map" href="https://maps.google.com/?q=644+Bayfield+St+Saint+Paul+MN+55107" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>Open in Maps</a><a class="res-action-btn btn-menu" href="https://www.holmanstable.com/dinner" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Menu</a>
+          <a class="res-action-btn btn-call" href="tel:6128005298"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 4.9 2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(612) 800-5298</a></div><div class="map-note">~8 min &middot; 2.5 mi from hotel &middot; Fri Jun 12 dinner 7pm then planespotting until 10pm</div></div>
+    </div>
+    <div class="map-card">
+      <div class="map-card-header"><span class="map-card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span><span class="map-card-title">Union Depot &mdash; 1881 Eating House &amp; DGPilot</span></div>
+      <div class="map-card-body"><div class="map-address">214 4th St E, Saint Paul, MN 55101<br>1881 Eating House Suite 300 &middot; DGPilot same building</div><div class="map-actions"><a class="res-action-btn btn-map" href="https://maps.google.com/?q=214+4th+St+E+Saint+Paul+MN+55101" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>Open in Maps</a><a class="res-action-btn btn-menu" href="https://www.1881eatinghouse.com/menu" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Menu</a>
+          <a class="res-action-btn btn-call" href="tel:9526981881"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 4.9 2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(952) 698-1881</a></div><div class="map-note">~5 min from hotel &middot; Sat Jun 13 &middot; Dinner 6:15pm then DGPilot 7:30pm &middot; same building</div></div>
+    </div>
+    <div class="map-card">
+      <div class="map-card-header"><span class="map-card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span><span class="map-card-title">Mall of America &amp; FireLake Grill</span></div>
+      <div class="map-card-body"><div class="map-address">60 E Broadway, Bloomington, MN 55425<br>FireLake: 2100 Killebrew Dr (Radisson Blu at MOA)</div><div class="map-actions"><a class="res-action-btn btn-map" href="https://maps.google.com/?q=Mall+of+America+Bloomington+MN+55425" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>Open in Maps</a><a class="res-action-btn btn-menu" href="https://www.firelakerestaurant.com/mall-of-america-menu/" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Menu</a>
+          <a class="res-action-btn btn-call" href="tel:9528514040"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 4.9 2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>FireLake (952) 851-4040</a></div><div class="map-note">~20 min &middot; 12 mi from hotel &middot; Sun Jun 14 &middot; FlyOver America 3:35pm &middot; FireLake dinner 7pm</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- WEATHER PAGE -->
+<div id="page-weather" class="page">
+  <div class="content">
+
+    <!-- METAR-style card -->
+    <div class="weather-ai-card">
+      <div class="wx-header">
+        <div class="wx-header-left">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          <span class="wx-header-title">KSTP Weather Brief</span>
+        </div>
+        <span class="wx-station-badge">St. Paul Downtown Airport</span>
+      </div>
+
+      <!-- METAR-style line -->
+      <div class="wx-metar-box" id="wx-metar-line">
+        <span class="wx-placeholder">Tap Fetch to load live conditions</span>
+      </div>
+
+      <!-- Decoded rows -->
+      <div class="wx-decoded" id="wx-decoded" style="display:none;">
+        <div class="wx-decoded-grid" id="wx-decoded-grid"></div>
+        <div style="padding: 0 0 6px 0; display:flex; align-items:center; gap:8px;">
+          <span class="wx-flight-cat" id="wx-flight-cat"></span>
+          <span class="wx-obs-time" id="wx-obs-time"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- NWS 4-day forecast card -->
+    <div class="weather-ai-card">
+      <div class="wx-header">
+        <div class="wx-header-left">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+          <span class="wx-header-title">NWS Forecast &mdash; Jun 12&ndash;15</span>
+        </div>
+        <span class="wx-station-badge">Saint Paul, MN</span>
+      </div>
+      <div id="wx-forecast-body">
+        <div class="wx-briefing-placeholder">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.5"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+          <p>Live NWS forecast will appear here</p>
+        </div>
+      </div>
+      <div class="wx-footer">
+        <span class="wx-updated" id="wx-updated"></span>
+        <button class="wx-fetch-btn" id="wx-btn" onclick="fetchAllWeather()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          Fetch Live Weather
+        </button>
+      </div>
+    </div>
+
+    <!-- Packing list -->
+    <div class="pack-card">
+      <div class="pack-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+        What to Pack
+      </div>
+      <div class="pack-list">
+        <div class="pack-item"><div class="pack-dot"></div>Light layers (evenings ~60&deg;F)</div>
+        <div class="pack-item"><div class="pack-dot"></div>Comfortable walking shoes</div>
+        <div class="pack-item"><div class="pack-dot"></div>Light jacket for evenings</div>
+        <div class="pack-item"><div class="pack-dot"></div>Sunscreen (outdoor time)</div>
+        <div class="pack-item"><div class="pack-dot"></div>Portable phone charger</div>
+        <div class="pack-item"><div class="pack-dot"></div>Conference badge lanyard</div>
+        <div class="pack-item"><div class="pack-dot"></div>Business cards</div>
+        <div class="pack-item"><div class="pack-dot"></div>Rain layer (just in case)</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CONTACTS PAGE -->
+<div id="page-contacts" class="page">
+  <div class="content">
+    <div class="contact-card">
+      <div class="contact-header"><span class="contact-header-title">Flights</span></div>
+      <div class="contact-row">
+        <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+        <div class="contact-body"><div class="contact-name">American Airlines</div><div class="contact-desc">Conf IPQUNV &middot; AA 2152 &amp; AA 2122</div></div>
+        <a class="contact-call" href="tel:18004334300"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 4.9 2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call AA</a>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-header"><span class="contact-header-title">Hotel</span></div>
+      <div class="contact-row">
+        <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div class="contact-body"><div class="contact-name">Courtyard by Marriott St. Paul</div><div class="contact-desc">Conf #73974591 &middot; 150 Smith Ave N</div></div>
+        <a class="contact-call" href="tel:+16512044050"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 4.9 2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call</a>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-header"><span class="contact-header-title">Car Rental</span></div>
+      <div class="contact-row">
+        <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        <div class="contact-body"><div class="contact-name">Budget &mdash; MSP Airport</div><div class="contact-desc">#47383761US5 &middot; 4901 Glumack Dr</div></div>
+        <a class="contact-call" href="tel:6127265237"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 4.9 2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call</a>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-header"><span class="contact-header-title">Dining</span></div>
+      <div class="contact-row">
+        <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+        <div class="contact-body"><div class="contact-name">Holman's Table</div><div class="contact-desc">Conf #58925 &middot; Fri Jun 12 &middot; 7:00pm</div></div>
+        <a class="contact-call" href="tel:6128005298"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 4.9 2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call</a>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+        <div class="contact-body"><div class="contact-name">1881 Eating House</div><div class="contact-desc">Conf #16474 &middot; Sat Jun 13 &middot; 6:15pm</div></div>
+        <a class="contact-call" href="tel:9526981881"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 4.9 2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call</a>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+        <div class="contact-body"><div class="contact-name">FireLake Grill House</div><div class="contact-desc">Conf #2110047863 &middot; Sun Jun 14 &middot; 7:00pm</div></div>
+        <a class="contact-call" href="tel:9528514040"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 4.9 2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call</a>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-header"><span class="contact-header-title">Emergency &amp; Airport</span></div>
+      <div class="contact-row">
+        <div class="contact-icon" style="background:#c8102e;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="contact-body"><div class="contact-name">Emergency Services</div><div class="contact-desc">Police &middot; Fire &middot; Medical</div></div>
+        <a class="contact-call" href="tel:911" style="background:#fde8ec;color:#c8102e;border:1px solid #f5c6ce;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 4.9 2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>911</a>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+        <div class="contact-body"><div class="contact-name">MSP Airport Info</div><div class="contact-desc">Minneapolis&ndash;Saint Paul International</div></div>
+        <a class="contact-call" href="tel:6127264000"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 4.9 2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- TIMELINE PAGE -->
+<div id="page-timeline" class="page">
+  <div class="content">
+    <div class="countdown-card">
+      <div class="countdown-label">FSExpo 2026 &middot; Saint Paul MN</div>
+      <div class="countdown-number" id="cd-number">--</div>
+      <div class="countdown-unit" id="cd-unit">calculating...</div>
+      <div class="countdown-status" id="cd-status">Loading...</div>
+      <div class="countdown-next" id="cd-next"></div>
+    </div>
+    <div class="tl-refresh">
+      <button class="tl-refresh-btn" onclick="buildTimeline()">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+        Refresh
+      </button>
+    </div>
+    <div id="timeline-container"></div>
+  </div>
+</div>
+
+<!-- ── BOTTOM NAV ── -->
+<nav class="bottom-nav">
+  <button class="nav-btn active" id="nav-home" onclick="goTo('home')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Home
+  </button>
+  <button class="nav-btn" id="nav-itin" onclick="goTo('itin')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+    Itinerary
+  </button>
+  <button class="nav-btn" id="nav-res" onclick="goTo('res')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+    Reservations
+  </button>
+  <button class="nav-btn" id="nav-dining" onclick="goTo('dining')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+    Dining
+  </button>
+  <button class="nav-btn" id="nav-maps" onclick="goTo('maps')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+    Maps
+  </button>
+  <button class="nav-btn" id="nav-weather" onclick="goTo('weather')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+    Weather
+  </button>
+  <button class="nav-btn" id="nav-contacts" onclick="goTo('contacts')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 4.9 2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    Contacts
+  </button>
+  <button class="nav-btn" id="nav-timeline" onclick="goTo('timeline')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+    Timeline
+  </button>
+</nav>
+
+<script>
+function goTo(page) {
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.nav-btn').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById('page-' + page).classList.add('active');
+  document.getElementById('nav-' + page).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (page === 'timeline') buildTimeline();
+}
+function showDay(day, btn) {
+  document.querySelectorAll('.day-section').forEach(function(el){ el.classList.remove('active'); });
+  document.querySelectorAll('.day-tab').forEach(function(el){ el.classList.remove('active'); });
+  document.getElementById('day-' + day).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top: 54, behavior: 'smooth' });
+}
+
+/* ── TIMELINE DATA (all times local CDT) ── */
+var TL = [
+  {d:[2026,6,12],t:[7,17],  title:'AA 2152 Departs DFW',              sub:'Seats 30D & 30F · Conf IPQUNV',                    badge:'flight', day:'Friday, June 12'},
+  {d:[2026,6,12],t:[9,42],  title:'Arrive MSP Terminal 1',             sub:'Budget car pickup at 10:00am',                     badge:'flight', day:'Friday, June 12'},
+  {d:[2026,6,12],t:[10,0],  title:'Budget Car Pickup',                 sub:'4901 Glumack Dr · Conf 47383761US5',               badge:'',       day:'Friday, June 12'},
+  {d:[2026,6,12],t:[10,20], title:'Lunch near hotel',                    sub:'West 7th St / Smith Ave area · ~45 min',                     badge:'dining', day:'Friday, June 12'},
+  {d:[2026,6,12],t:[11,45], title:'Badge Pickup at RiverCentre',       sub:'Ready for noon announcements',                    badge:'',       day:'Friday, June 12'},
+  {d:[2026,6,12],t:[12,0],  title:'#FSExpoFriday Announcements',       sub:'Grand Ballroom · 4.5 hours',                      badge:'must',   day:'Friday, June 12'},
+  {d:[2026,6,12],t:[15,0],  title:'Hotel Check-In — Courtyard Marriott',sub:'150 Smith Ave N · Conf 73974591',                badge:'',       day:'Friday, June 12'},
+  {d:[2026,6,12],t:[16,30], title:'Exhibit Hall Preview',              sub:'70+ booths · scout hardware',                     badge:'good',   day:'Friday, June 12'},
+  {d:[2026,6,12],t:[19,0],  title:"Dinner — Holman's Table",           sub:'644 Bayfield St · Conf #58925',                   badge:'dining', day:'Friday, June 12'},
+  {d:[2026,6,12],t:[20,30], title:'Planespotting — Holman Field',      sub:'GA traffic · Blackhawks · tower open til 10pm',   badge:'good',   day:'Friday, June 12'},
+  {d:[2026,6,13],t:[9,0],   title:'Walk to RiverCentre',               sub:'Early floor pass · 2 min from hotel',             badge:'',       day:'Saturday, June 13'},
+  {d:[2026,6,13],t:[10,0],  title:'Aircraft Failures Session',         sub:'SayIntentions.AI Stage · 1 FAA WINGS credit',     badge:'must',   day:'Saturday, June 13'},
+  {d:[2026,6,13],t:[11,0],  title:'SayIntentions.AI Deep-Dive',        sub:'Stay seated · Brian Shellabarger',                badge:'must',   day:'Saturday, June 13'},
+  {d:[2026,6,13],t:[12,0],  title:'Exhibit Hall + Thrustmaster',       sub:'Hardware booths · Thrustmaster 12:10 FSElite',    badge:'good',   day:'Saturday, June 13'},
+  {d:[2026,6,13],t:[13,0],  title:'Flight Dispatch Session',           sub:'SayIntentions.AI Stage · Collier & Bartels',      badge:'good',   day:'Saturday, June 13'},
+  {d:[2026,6,13],t:[15,0],  title:'Traffic Injector Session',          sub:'SayIntentions.AI Stage · Shellabarger & Ainsworth',badge:'good',  day:'Saturday, June 13'},
+  {d:[2026,6,13],t:[16,0],  title:'Microsoft MSFS 2024 Major Reveal',  sub:'FSElite Stage · headline event of Saturday',      badge:'must',   day:'Saturday, June 13'},
+  {d:[2026,6,13],t:[18,15], title:'Dinner — 1881 Eating House',        sub:'Union Depot Suite 300 · Conf #16474',             badge:'dining', day:'Saturday, June 13'},
+  {d:[2026,6,13],t:[19,30], title:'DGPilot Happy Hour',                sub:'Same building · free cocktail · flight sim comp', badge:'good',   day:'Saturday, June 13'},
+  {d:[2026,6,14],t:[9,0],   title:'Early Exhibit Hall Pass',           sub:'Hardware booths before crowds',                   badge:'',       day:'Sunday, June 14'},
+  {d:[2026,6,14],t:[10,40], title:'FlyByWire Simulations',             sub:'FSElite Stage · 20 min update',                  badge:'good',   day:'Sunday, June 14'},
+  {d:[2026,6,14],t:[11,0],  title:'SayIntentions.AI Deep Dive',        sub:'NOT recorded · in-person only · Shellabarger',   badge:'must',   day:'Sunday, June 14'},
+  {d:[2026,6,14],t:[12,0],  title:'Q&A — SayIntentions.AI Team',       sub:'Stay seated · bring questions',                  badge:'good',   day:'Sunday, June 14'},
+  {d:[2026,6,14],t:[14,30], title:'Closing Ceremony & FSExpo 2027',    sub:'FSElite Stage · 2027 venue reveal',               badge:'must',   day:'Sunday, June 14'},
+  {d:[2026,6,14],t:[15,35], title:'Mall of America — FlyOver America', sub:'Drive south I-35E · ~20 min',                    badge:'good',   day:'Sunday, June 14'},
+  {d:[2026,6,14],t:[19,0],  title:'Dinner — FireLake Grill House',     sub:'Radisson Blu at MOA · Conf #2110047863',          badge:'dining', day:'Sunday, June 14'},
+  {d:[2026,6,15],t:[10,0],  title:'Pack & Hotel Check-Out',            sub:'By 11:00am · Conf #73974591',                    badge:'',       day:'Monday, June 15'},
+  {d:[2026,6,15],t:[11,10], title:'Breakfast — The Buttered Tin',      sub:'West 7th St · on route to MSP · ~45 min',        badge:'dining', day:'Monday, June 15'},
+  {d:[2026,6,15],t:[12,5],  title:'Budget Car Return',                 sub:'4901 Glumack Dr · before 12:30pm deadline',      badge:'',       day:'Monday, June 15'},
+  {d:[2026,6,15],t:[15,7],  title:'AA 2122 Departs MSP',              sub:'Seats 30D & 30F · Conf IPQUNV',                   badge:'flight', day:'Monday, June 15'},
+  {d:[2026,6,15],t:[17,47], title:'Arrive DFW — Welcome Home!',        sub:'Ron & Marco · FSExpo 2026 complete!',            badge:'must',   day:'Monday, June 15'}
+];
+
+var TRIP_START = new Date(2026,5,12,7,17,0);
+var TRIP_END   = new Date(2026,5,15,17,47,0);
+
+function evDate(e) { return new Date(e.d[0], e.d[1]-1, e.d[2], e.t[0], e.t[1], 0); }
+
+function fmt12(t) {
+  var h = t[0], m = t[1];
+  var ap = h >= 12 ? 'p' : 'a';
+  var h12 = h > 12 ? h-12 : h === 0 ? 12 : h;
+  return h12 + ':' + (m < 10 ? '0'+m : m) + ap;
+}
+
+function buildCountdown() {
+  var now  = new Date();
+  var num  = document.getElementById('cd-number');
+  var unit = document.getElementById('cd-unit');
+  var stat = document.getElementById('cd-status');
+  var next = document.getElementById('cd-next');
+  if (!num) return;
+
+  if (now < TRIP_START) {
+    var diff = TRIP_START - now;
+    var days = Math.floor(diff / 86400000);
+    var hrs  = Math.floor((diff % 86400000) / 3600000);
+    var mins = Math.floor((diff % 3600000) / 60000);
+    num.textContent  = days;
+    unit.textContent = days === 1 ? 'day to go' : 'days to go';
+    stat.textContent = 'FSExpo 2026 is coming up!';
+    next.textContent = hrs + 'h ' + mins + 'm until AA 2152 departs DFW';
+  } else if (now <= TRIP_END) {
+    var dayNum = Math.floor((now - new Date(2026,5,12)) / 86400000) + 1;
+    num.textContent  = Math.min(dayNum, 4);
+    unit.textContent = 'of 4 trip days';
+    stat.textContent = 'FSExpo 2026 is happening NOW!';
+    var upcoming = TL.filter(function(e){ return evDate(e) > now; });
+    if (upcoming.length) {
+      var nx = upcoming[0];
+      var d2 = evDate(nx) - now;
+      var h2 = Math.floor(d2/3600000);
+      var m2 = Math.floor((d2%3600000)/60000);
+      next.textContent = 'Next: ' + nx.title + ' in ' + (h2>0 ? h2+'h ' : '') + m2 + 'm';
+    }
+  } else {
+    num.textContent  = '';
+    unit.textContent = '';
+    stat.textContent = 'Welcome home, Ron & Marco!';
+    next.textContent = 'FSExpo 2026 — June 12-15 · Saint Paul, MN';
+  }
+}
+
+function buildTimeline() {
+  buildCountdown();
+  var now  = new Date();
+  var cont = document.getElementById('timeline-container');
+  if (!cont) return;
+  cont.innerHTML = '';
+
+  var days = {}, order = [];
+  TL.forEach(function(e) {
+    if (!days[e.day]) { days[e.day] = []; order.push(e.day); }
+    days[e.day].push(e);
+  });
+
+  var badgeLabels = {must:'MUST',good:'PICK',flight:'FLIGHT',dining:'DINING'};
+
+  order.forEach(function(dayLabel) {
+    var evs     = days[dayLabel];
+    var pastCnt = evs.filter(function(e){ return evDate(e) < now; }).length;
+    var progTxt = pastCnt === 0 && evDate(evs[0]) > now ? 'Upcoming'
+                : pastCnt === evs.length ? 'Complete ✓'
+                : pastCnt + ' of ' + evs.length + ' done';
+
+    var grp = document.createElement('div');
+    grp.className = 'tl-day-group';
+    var hdr = document.createElement('div');
+    hdr.className = 'tl-day-header';
+    hdr.innerHTML = '<span class="tl-day-label">'+dayLabel+'</span><span class="tl-day-prog">'+progTxt+'</span>';
+    grp.appendChild(hdr);
+
+    /* find currently active segment */
+    var curIdx = -1;
+    for (var i = 0; i < evs.length; i++) {
+      var nxt = i+1 < evs.length ? evDate(evs[i+1]) : TRIP_END;
+      if (now >= evDate(evs[i]) && now < nxt) { curIdx = i; break; }
+    }
+
+    evs.forEach(function(e, idx) {
+      var isPast = evDate(e) < now && idx !== curIdx;
+      var isCur  = idx === curIdx;
+
+      var item = document.createElement('div');
+      item.className = 'tl-item' + (isPast?' past':'') + (isCur?' current':'');
+
+      var checkHTML = isPast
+        ? '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#43a047" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
+        : '';
+
+      var badgeHTML = isCur
+        ? '<span class="tl-badge now">NOW</span>'
+        : (e.badge && badgeLabels[e.badge] ? '<span class="tl-badge '+e.badge+'">'+badgeLabels[e.badge]+'</span>' : '');
+
+      item.innerHTML =
+        '<div class="tl-check">'+checkHTML+'</div>'+
+        '<div class="tl-time">'+fmt12(e.t)+'</div>'+
+        '<div class="tl-body"><div class="tl-title">'+e.title+'</div><div class="tl-sub">'+e.sub+'</div></div>'+
+        badgeHTML;
+
+      grp.appendChild(item);
+    });
+
+    cont.appendChild(grp);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function(){ buildCountdown(); });
+
+/* ── LIVE WEATHER ── */
+async function fetchAllWeather() {
+  var btn = document.getElementById('wx-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="wx-spinner"></span> Fetching...';
+  await Promise.all([fetchObservation(), fetchNWS()]);
+  var now = new Date();
+  var upd = document.getElementById('wx-updated');
+  if (upd) upd.textContent = 'Updated ' + now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+  btn.disabled = false;
+  btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg> Refresh';
+}
+
+async function fetchObservation() {
+  var lineEl  = document.getElementById('wx-metar-line');
+  var decEl   = document.getElementById('wx-decoded');
+  var gridEl  = document.getElementById('wx-decoded-grid');
+  var catEl   = document.getElementById('wx-flight-cat');
+  var timeEl  = document.getElementById('wx-obs-time');
+
+  try {
+    var resp = await fetch('https://api.weather.gov/stations/KSTP/observations/latest',
+                           { headers: { 'Accept': 'application/geo+json' } });
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    var data = await resp.json();
+    var p    = data.properties || {};
+
+    /* ── Safe value helpers ── */
+    function val(obj)  { return (obj && obj.value != null) ? obj.value : null; }
+    function toF(c)    { return c != null ? Math.round(c * 9/5 + 32)   : null; }
+    function toKt(ms)  { return ms != null ? Math.round(ms * 1.94384)  : null; }
+    function toMph(ms) { return ms != null ? Math.round(ms * 2.23694)  : null; }
+    function toSm(m)   { return m  != null ? +(m / 1609.34).toFixed(1) : null; }
+    function toFt(m)   { return m  != null ? Math.round(m * 3.28084)   : null; }
+    function toInHg(pa){ return pa != null ? (pa / 3386.39).toFixed(2) : null; }
+
+    var tempC   = val(p.temperature);
+    var dewC    = val(p.dewpoint);
+    var wdirD   = val(p.windDirection);
+    var wspdMs  = val(p.windSpeed);
+    var gustMs  = val(p.windGust);
+    var visM    = val(p.visibility);
+    var altPa   = val(p.barometricPressure) || val(p.seaLevelPressure);
+    var layers  = Array.isArray(p.cloudLayers) ? p.cloudLayers : [];
+    var desc    = p.textDescription || '';
+    var obsTs   = p.timestamp ? new Date(p.timestamp) : null;
+
+    var tempF   = toF(tempC);
+    var dewF    = toF(dewC);
+    var wspdKt  = toKt(wspdMs);
+    var wspdMph = toMph(wspdMs);
+    var gustKt  = toKt(gustMs);
+    var visSm   = toSm(visM);
+    var altInHg = toInHg(altPa);
+
+    /* ── Sky cover summary ── */
+    var coverMap = { SKC:'Clear', CLR:'Clear', FEW:'Few clouds', SCT:'Scattered', BKN:'Broken', OVC:'Overcast', OVX:'Obscured' };
+    var skyParts = layers.map(function(lyr) {
+      var amt  = lyr.amount || 'CLR';
+      var base = toFt(val(lyr.base));
+      return (coverMap[amt] || amt) + (base != null ? ' at ' + base.toLocaleString() + ' ft' : '');
+    });
+    var skyStr = skyParts.length ? skyParts.join(' · ') : 'Clear';
+
+    /* Top layer for ceiling calc */
+    var topAmt  = layers.length ? (layers[layers.length-1].amount || 'CLR') : 'CLR';
+    var topBase = layers.length ? toFt(val(layers[layers.length-1].base)) : null;
+
+    /* ── Build METAR-style display line ── */
+    var windStr, gustStr = '';
+    if (wspdKt != null && wspdKt === 0) {
+      windStr = 'WIND: Calm';
+    } else if (wspdKt != null) {
+      windStr = 'WIND: ' + (wdirD != null ? wdirD + '\u00b0' : 'VRB') + ' @ ' + wspdKt + 'kt';
+      if (gustKt) windStr += ' G' + gustKt + 'kt';
+      windStr += ' (' + wspdMph + ' mph)';
+    } else {
+      windStr = 'WIND: N/A';
+    }
+
+    var visStr  = visSm  != null ? 'VIS: '  + (visSm >= 10 ? '10+' : visSm) + ' SM'  : 'VIS: N/A';
+    var tempStr = tempF  != null ? 'TEMP: ' + tempF + '\u00b0F/' + Math.round(tempC) + '\u00b0C' : 'TEMP: N/A';
+    var dewStr  = dewF   != null ? 'DEW: '  + dewF  + '\u00b0F/' + Math.round(dewC)  + '\u00b0C' : 'DEW: N/A';
+    var altStr  = altInHg != null ? 'ALT: ' + altInHg + ' inHg' : 'ALT: N/A';
+    var skyLine = 'SKY: ' + skyStr;
+    var descStr = desc ? 'WX: ' + desc : '';
+
+    var line = [windStr, visStr, skyLine, tempStr, dewStr, altStr];
+    if (descStr) line.push(descStr);
+    lineEl.innerHTML = line.map(function(s) {
+      return '<span style="display:inline-block; margin-right:16px; margin-bottom:2px;">' + s + '</span>';
+    }).join('');
+
+    /* ── Decoded grid ── */
+    gridEl.innerHTML =
+      '<div class="wx-dec-item"><div class="wx-dec-label">Temperature</div>' +
+        '<div class="wx-dec-val">' + (tempF != null ? tempF + '\u00b0F' : '--') + '</div>' +
+        '<div class="wx-dec-sub">Dewpoint ' + (dewF != null ? dewF + '\u00b0F' : '--') + '</div></div>' +
+      '<div class="wx-dec-item"><div class="wx-dec-label">Wind</div>' +
+        '<div class="wx-dec-val" style="font-size:12px;">' +
+          (wspdKt != null ? (wdirD != null ? wdirD + '\u00b0' : 'VRB') + ' / ' + wspdKt + 'kt' : 'Calm') +
+        '</div>' +
+        '<div class="wx-dec-sub">' + (wspdMph != null ? wspdMph + ' mph' : '') +
+          (gustKt ? ' &mdash; Gusts ' + gustKt + 'kt' : '') + '</div></div>' +
+      '<div class="wx-dec-item"><div class="wx-dec-label">Visibility</div>' +
+        '<div class="wx-dec-val">' + (visSm != null ? (visSm >= 10 ? '10+' : visSm) + ' SM' : '--') + '</div>' +
+        '<div class="wx-dec-sub">Alt ' + (altInHg || '--') + ' inHg</div></div>' +
+      '<div class="wx-dec-item" style="grid-column:1/-1;">' +
+        '<div class="wx-dec-label">Sky</div>' +
+        '<div style="font-size:11px;color:#ccc;margin-top:3px;">' + skyStr + '</div></div>';
+
+    /* ── Flight category ── */
+    var visNum = visSm != null ? visSm : 10;
+    var ceilFt = (['BKN','OVC','OVX'].indexOf(topAmt) >= 0 && topBase != null) ? topBase : 99999;
+    var cat;
+    if      (visNum >= 5  && ceilFt > 3000) cat = 'VFR';
+    else if (visNum >= 3  && ceilFt > 1000) cat = 'MVFR';
+    else if (visNum >= 1  && ceilFt > 500)  cat = 'IFR';
+    else                                     cat = 'LIFR';
+
+    catEl.className   = 'wx-flight-cat ' + cat;
+    catEl.textContent = cat;
+    if (timeEl && obsTs) timeEl.textContent = 'Observed ' + obsTs.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}) + ' local';
+
+    decEl.style.display = 'block';
+
+  } catch(e) {
+    lineEl.innerHTML = '<span style="color:#f87171;">Observation fetch failed: ' + e.message + '</span>';
+  }
+}
+
+async function fetchNWS() {
+  var body = document.getElementById('wx-forecast-body');
+  try {
+    var ptResp = await fetch('https://api.weather.gov/points/44.9343,-93.0626');
+    if (!ptResp.ok) throw new Error('NWS points HTTP ' + ptResp.status);
+    var ptData = await ptResp.json();
+    var fcResp = await fetch(ptData.properties.forecast);
+    if (!fcResp.ok) throw new Error('NWS forecast HTTP ' + fcResp.status);
+    var fcData = await fcResp.json();
+    var periods = fcData.properties.periods || [];
+
+    var tripDates    = ['2026-06-12','2026-06-13','2026-06-14','2026-06-15'];
+    var tripDayNames = {'2026-06-12':'Friday, Jun 12','2026-06-13':'Saturday, Jun 13','2026-06-14':'Sunday, Jun 14','2026-06-15':'Monday, Jun 15'};
+
+    var byDate = {};
+    periods.forEach(function(p) {
+      var d = p.startTime.substring(0,10);
+      if (tripDates.indexOf(d) >= 0) {
+        if (!byDate[d]) byDate[d] = {day:null,night:null};
+        if (p.isDaytime) byDate[d].day   = p;
+        else             byDate[d].night = p;
+      }
+    });
+
+    function wxIcon(txt) {
+      txt = (txt||'').toLowerCase();
+      if (txt.includes('thunder'))                          return '\u26c8';
+      if (txt.includes('snow'))                             return '\u2744';
+      if (txt.includes('rain')||txt.includes('shower'))    return '\ud83c\udf27';
+      if (txt.includes('fog')||txt.includes('mist'))       return '\ud83c\udf2b';
+      if (txt.includes('partly'))                           return '\u26c5';
+      if (txt.includes('cloud')||txt.includes('overcast')) return '\u2601';
+      if (txt.includes('wind'))                             return '\ud83c\udf2c';
+      return '\u2600';
+    }
+
+    function rainClass(v) { return v == null||v<20?'low':v<50?'mid':'high'; }
+
+    var html = '';
+    tripDates.forEach(function(d) {
+      var info = byDate[d];
+      if (!info || !info.day) return;
+      var p    = info.day;
+      var np   = info.night;
+      var prob = p.probabilityOfPrecipitation && p.probabilityOfPrecipitation.value != null
+                 ? p.probabilityOfPrecipitation.value : null;
+      var low  = np ? np.temperature : null;
+      html +=
+        '<div class="wx-forecast-day">' +
+          '<div class="wx-fc-icon">' + wxIcon(p.shortForecast) + '</div>' +
+          '<div class="wx-fc-body">' +
+            '<div class="wx-fc-name">' + tripDayNames[d] + '</div>' +
+            '<div class="wx-fc-temps">High ' + p.temperature + '\u00b0' + p.temperatureUnit +
+              (low != null ? ' &nbsp;&middot;&nbsp; Low ' + low + '\u00b0' + p.temperatureUnit : '') + '</div>' +
+            '<div class="wx-fc-desc">' + p.detailedForecast + '</div>' +
+            '<div class="wx-fc-wind">Wind: ' + p.windSpeed + ' ' + p.windDirection + '</div>' +
+            (prob != null ? '<div class="wx-fc-rain ' + rainClass(prob) + '">\ud83d\udca7 ' + prob + '% precipitation</div>' : '') +
+          '</div>' +
+        '</div>';
+    });
+
+    if (!html) {
+      html = '<div class="wx-err">NWS forecast not yet available for Jun 12\u201315 &mdash; check back when within 7 days of the trip.' +
+             '<br><br><a class="res-action-btn btn-map" href="https://forecast.weather.gov/MapClick.php?CityName=Saint+Paul&state=MN&site=MPX" target="_blank" style="display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;padding:6px 12px;border-radius:99px;text-decoration:none;background:#e3f2fd;color:#1565c0;border:1px solid #bbdefb;">Open NWS Forecast</a></div>';
+    }
+    body.innerHTML = html;
+
+  } catch(e) {
+    body.innerHTML = '<div class="wx-err">Forecast fetch failed: ' + e.message + '</div>';
+  }
+}
+
+</script>
+</body>
+</html>
